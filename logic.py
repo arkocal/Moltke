@@ -1,3 +1,4 @@
+from pygame.math import Vector2
 
 class GameObject:
     def __init__(self, position, box):
@@ -17,25 +18,26 @@ class GameObject:
         me_br = self.bottom_right
         he_tl = other.top_left
         he_br = other.bottom_right
-        
-        if(me_tl.x < he_tl.x)
+
+        if(me_tl.x < he_tl.x):
             return False
-        if(me_br.x > he_tl.x)
+        if(me_br.x > he_tl.x):
             return False
-        if(me_tl.y < he_tl.y)
+        if(me_tl.y < he_tl.y):
             return False
-        if(me_br.y > he_tl.y)
+        if(me_br.y > he_tl.y):
             return False
-    
+
 class Player(GameObject):
     def __init__(self, position, movement):
+        GameObject.__init__(self, position, Vector2(0.05, 0.05))
         self.movement = movement
 
     def turn_cw(self):
-        self.movement.rotate(90)
+        self.movement = self.movement.rotate(90)
 
     def turn_ccw(self):
-        self.movement.rotate(-90)
+        self.movement = self.movement.rotate(270)
 
 class Obstacle(GameObject):
     pass
@@ -51,11 +53,11 @@ class Game:
         for p in self.players:
             p.position += p.movement
 
-    def turn_cw()
+    def turn_cw(self):
+        print("Turning")
         for p in self.players:
             p.turn_cw()
 
-    def turn_ccw()
+    def turn_ccw(self):
         for p in self.players:
-            p.turn_cw()
-        
+            p.turn_ccw()
